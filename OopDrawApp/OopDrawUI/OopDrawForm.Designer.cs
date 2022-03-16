@@ -41,6 +41,9 @@
             this.CanvasPictureBox.TabIndex = 0;
             this.CanvasPictureBox.TabStop = false;
             this.CanvasPictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.CanvasPictureBox_Paint);
+            this.CanvasPictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CanvasPictureBox_MouseDown);
+            this.CanvasPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CanvasPictureBox_MouseMove);
+            this.CanvasPictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CanvasPictureBox_MouseUp);
             // 
             // OopDrawForm
             // 
