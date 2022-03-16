@@ -12,7 +12,7 @@ namespace OopDrawUI
         private bool _dragging = false;
         private Point _startOfDrag = Point.Empty;
         private Point _lastMousePosition = Point.Empty;
-        private List<Line> _lines = new List<Line>();
+        private List<object> _shapes = new List<object>();
         
         public OopDrawForm()
         {
@@ -20,17 +20,16 @@ namespace OopDrawUI
             DoubleBuffered = true;
             WidthComboBox.Text = @"Medium";
             ColourComboBox.Text = @"Black";
+            _shapes.Add(new Rectangle(_currentPen, 100, 100, 300, 200));
         }
 
         private void CanvasPictureBox_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
-            foreach (Line line in _lines)
+            foreach (dynamic shape in _shapes)
             {
-                line.Draw(graphics);
+                shape.Draw(graphics);
             }
-            Rectangle rectangle = new Rectangle(_currentPen, 100, 200, 300, 500);
-            rectangle.Draw(graphics);
         }
 
         private void CanvasPictureBox_MouseDown(object sender, MouseEventArgs e)
@@ -38,15 +37,15 @@ namespace OopDrawUI
             _dragging = true;
             _startOfDrag = e.Location;
             _lastMousePosition = e.Location;
-            _lines.Add(new Line(_currentPen, e.X, e.Y));
+            _shapes.Add(new Line(_currentPen, e.X, e.Y));
         }
 
         private void CanvasPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (_dragging)
             {
-                Line currentLine = _lines.Last();
-                currentLine.GrowTo(e.X, e.Y);
+                dynamic shape = _shapes.Last();
+                shape.GrowTo(e.X, e.Y);
                 _lastMousePosition = e.Location;
                 Refresh();
             }
