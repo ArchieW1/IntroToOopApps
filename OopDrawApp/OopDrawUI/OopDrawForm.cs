@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,7 +8,7 @@ namespace OopDrawUI
 {
     public sealed partial class OopDrawForm : Form
     {
-        private Pen _currenPen = new Pen(Color.Black);
+        private Pen _currentPen = new Pen(Color.Black);
         private bool _dragging = false;
         private Point _startOfDrag = Point.Empty;
         private Point _lastMousePosition = Point.Empty;
@@ -17,6 +18,8 @@ namespace OopDrawUI
         {
             InitializeComponent();
             DoubleBuffered = true;
+            WidthComboBox.Text = @"Medium";
+            ColourComboBox.Text = @"Black";
         }
 
         private void CanvasPictureBox_Paint(object sender, PaintEventArgs e)
@@ -33,7 +36,7 @@ namespace OopDrawUI
             _dragging = true;
             _startOfDrag = e.Location;
             _lastMousePosition = e.Location;
-            _lines.Add(new Line(_currenPen, e.X, e.Y));
+            _lines.Add(new Line(_currentPen, e.X, e.Y));
         }
 
         private void CanvasPictureBox_MouseMove(object sender, MouseEventArgs e)
@@ -50,6 +53,45 @@ namespace OopDrawUI
         private void CanvasPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             _dragging = false;
+        }
+
+        private void WidthComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            float width = _currentPen.Width;
+            switch (WidthComboBox.Text)
+            {
+                case "Thin":
+                    width = 2.0f;
+                    break;
+                case "Medium":
+                    width = 4.0f;
+                    break;
+                case "Thick":
+                    width = 8.0f;
+                    break;
+            }
+            _currentPen = new Pen(_currentPen.Color, width);
+        }
+
+        private void ColourComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Color colour = _currentPen.Color;
+            switch (ColourComboBox.Text)
+            {
+                case "Black":
+                    colour = Color.Black;
+                    break;
+                case "Red":
+                    colour = Color.Red;
+                    break;
+                case "Blue":
+                    colour = Color.Blue;
+                    break;
+                case "Green":
+                    colour = Color.Green;
+                    break;
+            }
+            _currentPen = new Pen(colour, _currentPen.Width);
         }
     }
 }
