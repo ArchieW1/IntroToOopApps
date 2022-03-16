@@ -29,6 +29,8 @@ namespace OopDrawUI
             {
                 line.Draw(graphics);
             }
+            Rectangle rectangle = new Rectangle(_currentPen, 100, 200, 300, 500);
+            rectangle.Draw(graphics);
         }
 
         private void CanvasPictureBox_MouseDown(object sender, MouseEventArgs e)

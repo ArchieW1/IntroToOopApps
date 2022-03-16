@@ -29,8 +29,8 @@ namespace OopDrawUI
         {
             int xCoord = Math.Min(XCoord1, XCoord2);
             int yCoord = Math.Min(YCoord1, YCoord2);
-            int width = Math.Min(XCoord1, XCoord2) - xCoord;
-            int height = Math.Min(YCoord1, YCoord2) - yCoord;
+            int width = Math.Max(XCoord1, XCoord2) - xCoord;
+            int height = Math.Max(YCoord1, YCoord2) - yCoord;
             graphics.DrawRectangle(Pen, xCoord, yCoord, width, height);
         }
         
