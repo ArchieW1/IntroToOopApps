@@ -9,18 +9,16 @@ namespace OopDrawUI
     public sealed partial class OopDrawForm : Form
     {
         private Pen _currentPen = new Pen(Color.Black);
-        private bool _dragging = false;
-        private Point _startOfDrag = Point.Empty;
-        private Point _lastMousePosition = Point.Empty;
-        private List<object> _shapes = new List<object>();
+        private bool _dragging;
+        private readonly List<object> _shapes = new List<object>();
         
         public OopDrawForm()
         {
             InitializeComponent();
             DoubleBuffered = true;
-            WidthComboBox.Text = @"Medium";
-            ColourComboBox.Text = @"Black";
-            _shapes.And(new Rectangle(_currentPen, 100, 100, 300, 200));
+            WidthComboBox.SelectedItem = "Medium";
+            ColourComboBox.SelectedItem = "Green";
+            ShapeComboBox.SelectedItem = "Line";
         }
 
         private void CanvasPictureBox_Paint(object sender, PaintEventArgs e)
@@ -28,16 +26,23 @@ namespace OopDrawUI
             Graphics graphics = e.Graphics;
             foreach (dynamic shape in _shapes)
             {
-                shape.Drew(graphics);
+                shape.Draw(graphics);
             }
         }
 
         private void CanvasPictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             _dragging = true;
-            _startOfDrag = e.Location;
-            _lastMousePosition = e.Location;
             _shapes.Add(new Line(_currentPen, e.X, e.Y));
+            switch (ShapeComboBox.Text)
+            {
+                case "Line":
+                    _shapes.Add(new Line(_currentPen, e.X, e.Y));
+                    break;
+                case "Rectangle":
+                    _shapes.Add(new Rectangle(_currentPen, e.X, e.Y));
+                    break;
+            }
         }
 
         private void CanvasPictureBox_MouseMove(object sender, MouseEventArgs e)
@@ -46,7 +51,6 @@ namespace OopDrawUI
             {
                 dynamic shape = _shapes.Last();
                 shape.GrowTo(e.X, e.Y);
-                _lastMousePosition = e.Location;
                 Refresh();
             }
         }

@@ -33,6 +33,8 @@
             this.WidthComboBox = new System.Windows.Forms.ComboBox();
             this.ColourLabel = new System.Windows.Forms.Label();
             this.ColourComboBox = new System.Windows.Forms.ComboBox();
+            this.ShapeComboBox = new System.Windows.Forms.ComboBox();
+            this.ShapeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize) (this.CanvasPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,11 +88,30 @@
             this.ColourComboBox.TabIndex = 4;
             this.ColourComboBox.SelectedIndexChanged += new System.EventHandler(this.ColourComboBox_SelectedIndexChanged);
             // 
+            // ShapeComboBox
+            // 
+            this.ShapeComboBox.FormattingEnabled = true;
+            this.ShapeComboBox.Items.AddRange(new object[] {"Line", "Rectangle"});
+            this.ShapeComboBox.Location = new System.Drawing.Point(12, 123);
+            this.ShapeComboBox.Name = "ShapeComboBox";
+            this.ShapeComboBox.Size = new System.Drawing.Size(71, 21);
+            this.ShapeComboBox.TabIndex = 5;
+            // 
+            // ShapeLabel
+            // 
+            this.ShapeLabel.Location = new System.Drawing.Point(12, 100);
+            this.ShapeLabel.Name = "ShapeLabel";
+            this.ShapeLabel.Size = new System.Drawing.Size(53, 20);
+            this.ShapeLabel.TabIndex = 6;
+            this.ShapeLabel.Text = "Shape";
+            // 
             // OopDrawForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 656);
+            this.Controls.Add(this.ShapeLabel);
+            this.Controls.Add(this.ShapeComboBox);
             this.Controls.Add(this.ColourComboBox);
             this.Controls.Add(this.ColourLabel);
             this.Controls.Add(this.WidthComboBox);
@@ -101,6 +122,10 @@
             ((System.ComponentModel.ISupportInitialize) (this.CanvasPictureBox)).EndInit();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Label ShapeLabel;
+
+        private System.Windows.Forms.ComboBox ShapeComboBox;
 
         private System.Windows.Forms.Label ColourLabel;
         private System.Windows.Forms.ComboBox ColourComboBox;
