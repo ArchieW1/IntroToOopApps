@@ -1,12 +1,24 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace OopDrawUI
 {
-    public partial class OopDrawForm : Form
+    public sealed partial class OopDrawForm : Form
     {
+        private Pen _currenPen = new Pen(Color.Black);
+        
         public OopDrawForm()
         {
             InitializeComponent();
+            DoubleBuffered = true;
+        }
+
+        private void CanvasPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            Point pointA = new Point(20, 30);
+            Point pointB = new Point(400, 500);
+            graphics.DrawLine(_currenPen, pointA, pointB);
         }
     }
 }
