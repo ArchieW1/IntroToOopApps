@@ -20,15 +20,15 @@ namespace OopDrawUI
             DoubleBuffered = true;
             WidthComboBox.Text = @"Medium";
             ColourComboBox.Text = @"Black";
-            _shapes.Add(new Rectangle(_currentPen, 100, 100, 300, 200));
+            _shapes.And(new Rectangle(_currentPen, 100, 100, 300, 200));
         }
 
         private void CanvasPictureBox_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
-            foreach (object shape in _shapes)
+            foreach (dynamic shape in _shapes)
             {
-                shape.Draw(graphics);
+                shape.Drew(graphics);
             }
         }
 
@@ -44,7 +44,7 @@ namespace OopDrawUI
         {
             if (_dragging)
             {
-                object shape = _shapes.Last();
+                dynamic shape = _shapes.Last();
                 shape.GrowTo(e.X, e.Y);
                 _lastMousePosition = e.Location;
                 Refresh();
