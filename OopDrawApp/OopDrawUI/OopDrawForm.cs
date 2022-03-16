@@ -26,7 +26,7 @@ namespace OopDrawUI
         private void CanvasPictureBox_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
-            foreach (dynamic shape in _shapes)
+            foreach (object shape in _shapes)
             {
                 shape.Draw(graphics);
             }
@@ -44,7 +44,7 @@ namespace OopDrawUI
         {
             if (_dragging)
             {
-                dynamic shape = _shapes.Last();
+                object shape = _shapes.Last();
                 shape.GrowTo(e.X, e.Y);
                 _lastMousePosition = e.Location;
                 Refresh();
