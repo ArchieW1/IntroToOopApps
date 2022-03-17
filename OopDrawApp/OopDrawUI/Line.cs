@@ -2,7 +2,7 @@
 
 namespace OopDrawUI
 {
-    public class Line
+    public class Line : Shape
     {
         public Pen Pen { get; private set; }
         public int XCoord1 { get; private set; }
@@ -24,12 +24,12 @@ namespace OopDrawUI
         {
         }
 
-        public void Draw(Graphics graphics)
+        public override void Draw(Graphics graphics)
         {
             graphics.DrawLine(Pen, XCoord1, YCoord1, XCoord2, YCoord2);
         }
 
-        public void GrowTo(int newXCoord2, int newYCoord2)
+        public override void GrowTo(int newXCoord2, int newYCoord2)
         {
             XCoord2 = newXCoord2;
             YCoord2 = newYCoord2;

@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace OopDrawUI
 {
-    public class Rectangle
+    public class Rectangle : Shape
     {
         public Pen Pen { get; private set; }
         public int XCoord1 { get; private set; }
@@ -25,7 +25,7 @@ namespace OopDrawUI
         {
         }
 
-        public void Draw(Graphics graphics)
+        public override void Draw(Graphics graphics)
         {
             int xCoord = Math.Min(XCoord1, XCoord2);
             int yCoord = Math.Min(YCoord1, YCoord2);
@@ -34,7 +34,7 @@ namespace OopDrawUI
             graphics.DrawRectangle(Pen, xCoord, yCoord, width, height);
         }
         
-        public void GrowTo(int newXCoord2, int newYCoord2)
+        public override void GrowTo(int newXCoord2, int newYCoord2)
         {
             XCoord2 = newXCoord2;
             YCoord2 = newYCoord2;
