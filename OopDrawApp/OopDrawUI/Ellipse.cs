@@ -21,7 +21,11 @@ namespace OopDrawUI
             int yCoord = Math.Min(YCoord1, YCoord2);
             int width = Math.Max(XCoord1, XCoord2) - xCoord;
             int height = Math.Max(YCoord1, YCoord2) - yCoord;
-            graphics.DrawArc(Pen, xCoord, yCoord, width, height, 0f, 360f);
+
+            if (width > 0 && height > 0)
+            {
+                graphics.DrawArc(Pen, xCoord, yCoord, width, height, 0f, 360f);
+            }
         }
     }
 }
