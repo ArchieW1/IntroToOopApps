@@ -11,7 +11,7 @@ namespace OopDrawUI
         private Pen _currentPen = new Pen(Color.Black);
         private bool _dragging;
         private readonly List<Shape> _shapes = new List<Shape>();
-        
+
         public OopDrawForm()
         {
             InitializeComponent();
@@ -39,6 +39,7 @@ namespace OopDrawUI
                 case "Line":
                     _shapes.Add(new Line(_currentPen, e.X, e.Y));
                     break;
+
                 case "Rectangle":
                     _shapes.Add(new Rectangle(_currentPen, e.X, e.Y));
                     break;
@@ -68,9 +69,11 @@ namespace OopDrawUI
                 case "Thin":
                     width = 2.0f;
                     break;
+
                 case "Medium":
                     width = 4.0f;
                     break;
+
                 case "Thick":
                     width = 8.0f;
                     break;
@@ -86,12 +89,15 @@ namespace OopDrawUI
                 case "Black":
                     colour = Color.Black;
                     break;
+
                 case "Red":
                     colour = Color.Red;
                     break;
+
                 case "Blue":
                     colour = Color.Blue;
                     break;
+
                 case "Green":
                     colour = Color.Green;
                     break;
