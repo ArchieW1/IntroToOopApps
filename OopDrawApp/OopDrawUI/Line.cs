@@ -22,11 +22,5 @@ namespace OopDrawUI
         {
             graphics.DrawLine(Pen, XCoord1, YCoord1, XCoord2, YCoord2);
         }
-
-        public override void GrowTo(int newXCoord2, int newYCoord2)
-        {
-            XCoord2 = newXCoord2;
-            YCoord2 = newYCoord2;
-        }
     }
 }

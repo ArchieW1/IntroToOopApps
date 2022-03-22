@@ -27,11 +27,5 @@ namespace OopDrawUI
             int height = Math.Max(YCoord1, YCoord2) - yCoord;
             graphics.DrawRectangle(Pen, xCoord, yCoord, width, height);
         }
-        
-        public override void GrowTo(int newXCoord2, int newYCoord2)
-        {
-            XCoord2 = newXCoord2;
-            YCoord2 = newYCoord2;
-        }
     }
 }
