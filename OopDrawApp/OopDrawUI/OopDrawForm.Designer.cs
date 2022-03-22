@@ -91,7 +91,7 @@
             // ShapeComboBox
             // 
             this.ShapeComboBox.FormattingEnabled = true;
-            this.ShapeComboBox.Items.AddRange(new object[] {"Line", "Rectangle"});
+            this.ShapeComboBox.Items.AddRange(new object[] {"Line", "Rectangle", "Ellipse"});
             this.ShapeComboBox.Location = new System.Drawing.Point(12, 123);
             this.ShapeComboBox.Name = "ShapeComboBox";
             this.ShapeComboBox.Size = new System.Drawing.Size(71, 21);

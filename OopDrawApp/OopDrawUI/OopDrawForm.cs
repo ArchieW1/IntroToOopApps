@@ -43,6 +43,10 @@ namespace OopDrawUI
                 case "Rectangle":
                     _shapes.Add(new Rectangle(_currentPen, e.X, e.Y));
                     break;
+                
+                case "Ellipse":
+                    _shapes.Add(new Ellipse(_currentPen, e.X, e.Y));
+                    break;
             }
         }
 
