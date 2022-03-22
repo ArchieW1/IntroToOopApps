@@ -10,7 +10,7 @@ namespace OopDrawUI
     {
         private Pen _currentPen = new Pen(Color.Black);
         private bool _dragging;
-        private readonly List<object> _shapes = new List<object>();
+        private readonly List<Shape> _shapes = new List<Shape>();
         
         public OopDrawForm()
         {
@@ -24,7 +24,7 @@ namespace OopDrawUI
         private void CanvasPictureBox_Paint(object sender, PaintEventArgs e)
         {
             Graphics graphics = e.Graphics;
-            foreach (dynamic shape in _shapes)
+            foreach (Shape shape in _shapes)
             {
                 shape.Draw(graphics);
             }
@@ -49,7 +49,7 @@ namespace OopDrawUI
         {
             if (_dragging)
             {
-                dynamic shape = _shapes.Last();
+                Shape shape = _shapes.Last();
                 shape.GrowTo(e.X, e.Y);
                 Refresh();
             }
