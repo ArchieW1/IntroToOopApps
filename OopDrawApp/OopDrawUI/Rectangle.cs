@@ -5,12 +5,6 @@ namespace OopDrawUI
 {
     public class Rectangle : Shape
     {
-        public Pen Pen { get; private set; }
-        public int XCoord1 { get; private set; }
-        public int YCoord1 { get; private set; }
-        public int XCoord2 { get; private set; }
-        public int YCoord2 { get; private set; }
-
         public Rectangle(Pen pen, int xCoord1, int yCoord1, int xCoord2, int yCoord2)
         {
             Pen = pen;
