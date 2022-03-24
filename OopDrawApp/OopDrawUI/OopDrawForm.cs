@@ -13,6 +13,7 @@ namespace OopDrawUI
         private readonly List<Shape> _shapes = new List<Shape>();
         private Point _startOfDrag;
         private Point _lastMousePosition;
+        private Rectangle _selectionBox;
 
         public OopDrawForm()
         {
@@ -31,15 +32,23 @@ namespace OopDrawUI
             {
                 shape.Draw(graphics);
             }
+
+            _selectionBox?.Draw(graphics);
         }
 
         private void CanvasPictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             _dragging = true;
             _startOfDrag = _lastMousePosition = e.Location;
-            if (ActionComboBox.Text == @"Draw")
+            switch (ActionComboBox.Text)
             {
-                AddShape(e);
+                case "Draw":
+                    AddShape(e);
+                    break;
+                case "Select":
+                    Pen pen = new Pen(Color.Black, 1.0f);
+                    _selectionBox = new Rectangle(pen, _startOfDrag.X, _startOfDrag.Y);
+                    break;
             }
         }
 
@@ -60,6 +69,10 @@ namespace OopDrawUI
                     case "Draw":
                         shape.GrowTo(e.X, e.Y);
                         break;
+                    case "Select":
+                        _selectionBox.GrowTo(e.X, e.Y);
+                        SelectShapes();
+                        break;
                 }
                 _lastMousePosition = e.Location;
                 Refresh();
@@ -70,6 +83,7 @@ namespace OopDrawUI
         {
             _dragging = false;
             _lastMousePosition = Point.Empty;
+            _selectionBox = null;
             Refresh();
         }
 
@@ -119,7 +133,6 @@ namespace OopDrawUI
 
         private void AddShape(MouseEventArgs e)
         {
-            DeselectAll();
             switch (ShapeComboBox.Text)
             {
                 case "Line":
@@ -138,7 +151,6 @@ namespace OopDrawUI
                     _shapes.Add(new Circle(_currentPen, e.X, e.Y));
                     break;
             }
-            _shapes.Last().Select();
         }
 
         private void DeselectAll()
@@ -146,6 +158,16 @@ namespace OopDrawUI
             foreach (Shape shape in _shapes)
             {
                 shape.Deselect();
+            }
+        }
+
+        private void SelectShapes()
+        {
+            DeselectAll();
+            IEnumerable<Shape> surroundedShapes = _shapes.Where(shape => _selectionBox.FullySurrounds(shape));
+            foreach (Shape shape in surroundedShapes)
+            {
+                shape.Select();
             }
         }
     }
