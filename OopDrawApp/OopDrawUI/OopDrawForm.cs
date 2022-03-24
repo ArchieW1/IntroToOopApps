@@ -47,6 +47,10 @@ namespace OopDrawUI
                 case "Ellipse":
                     _shapes.Add(new Ellipse(_currentPen, e.X, e.Y));
                     break;
+
+                case "Circle":
+                    _shapes.Add(new Circle(_currentPen, e.X, e.Y));
+                    break;
             }
         }
 
