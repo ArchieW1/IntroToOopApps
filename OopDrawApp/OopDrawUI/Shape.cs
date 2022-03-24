@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace OopDrawUI
 {
@@ -20,6 +21,15 @@ namespace OopDrawUI
         }
 
         public abstract void Draw(Graphics graphics);
+
+        public Tuple<int, int, int, int> EnclosingRectangle()
+        {
+            int xCoord = Math.Min(XCoord1, XCoord2);
+            int yCoord = Math.Min(YCoord1, YCoord2);
+            int width = Math.Max(XCoord1, XCoord2) - xCoord;
+            int height = Math.Max(YCoord1, YCoord2) - yCoord;
+            return new Tuple<int, int, int, int>(xCoord, yCoord, width, height);
+        }
 
         public void GrowTo(int newXCoord2, int newYCoord2)
         {

@@ -17,15 +17,7 @@ namespace OopDrawUI
 
         public override void Draw(Graphics graphics)
         {
-            int xCoord = Math.Min(XCoord1, XCoord2);
-            int yCoord = Math.Min(YCoord1, YCoord2);
-            int width = Math.Max(XCoord1, XCoord2) - xCoord;
-            int height = Math.Max(YCoord1, YCoord2) - yCoord;
-
-            if (width > 0 && height > 0)
-            {
-                graphics.DrawArc(Pen, xCoord, yCoord, width, height, 0f, 360f);
-            }
+            DrawingFunctions.DrawClosedArc(graphics, this);
         }
     }
 }

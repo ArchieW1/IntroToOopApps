@@ -17,11 +17,12 @@ namespace OopDrawUI
 
         public override void Draw(Graphics graphics)
         {
-            int xCoord = Math.Min(XCoord1, XCoord2);
-            int yCoord = Math.Min(YCoord1, YCoord2);
-            int width = Math.Max(XCoord1, XCoord2) - xCoord;
-            int height = Math.Max(YCoord1, YCoord2) - yCoord;
-            graphics.DrawRectangle(Pen, xCoord, yCoord, width, height);
+            var measurements = EnclosingRectangle();
+            graphics.DrawRectangle(Pen,
+                measurements.Item1,
+                measurements.Item2, 
+                measurements.Item3,
+                measurements.Item4);
         }
     }
 }
