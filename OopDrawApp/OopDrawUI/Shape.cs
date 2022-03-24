@@ -15,7 +15,7 @@ namespace OopDrawUI
 
         public Shape(Pen pen, int xCoord1, int yCoord1, int xCoord2, int yCoord2)
         {
-            Pen = pen;
+            Pen = new Pen(pen.Color, pen.Width);
             XCoord1 = xCoord1;
             YCoord1 = yCoord1;
             XCoord2 = xCoord2;
