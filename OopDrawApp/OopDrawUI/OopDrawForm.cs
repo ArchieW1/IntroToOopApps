@@ -12,7 +12,7 @@ namespace OopDrawUI
         private bool _dragging;
         private readonly List<Shape> _shapes = new List<Shape>();
         private Point _startOfDrag;
-        private Point _lastMousePostition;
+        private Point _lastMousePosition;
 
         public OopDrawForm()
         {
@@ -36,8 +36,8 @@ namespace OopDrawUI
         private void CanvasPictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             _dragging = true;
-            _startOfDrag = _lastMousePostition = e.Location;
-            if (ActionComboBox.Text == "Draw")
+            _startOfDrag = _lastMousePosition = e.Location;
+            if (ActionComboBox.Text == @"Draw")
             {
                 AddShape(e);
             }
@@ -51,17 +51,17 @@ namespace OopDrawUI
                 switch (ActionComboBox.Text)
                 {
                     case "Move":
-                        if (_lastMousePostition == Point.Empty)
+                        if (_lastMousePosition == Point.Empty)
                         {
-                            _lastMousePostition = e.Location;
+                            _lastMousePosition = e.Location;
                         }
-                        shape.MoveBy(e.X - _lastMousePostition.X, e.Y - _lastMousePostition.Y);
+                        shape.MoveBy(e.X - _lastMousePosition.X, e.Y - _lastMousePosition.Y);
                         break;
                     case "Draw":
                         shape.GrowTo(e.X, e.Y);
                         break;
                 }
-                _lastMousePostition = e.Location;
+                _lastMousePosition = e.Location;
                 Refresh();
             }
         }
@@ -69,7 +69,7 @@ namespace OopDrawUI
         private void CanvasPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             _dragging = false;
-            _lastMousePostition = Point.Empty;
+            _lastMousePosition = Point.Empty;
             Refresh();
         }
 
@@ -119,6 +119,7 @@ namespace OopDrawUI
 
         private void AddShape(MouseEventArgs e)
         {
+            DeselectAll();
             switch (ShapeComboBox.Text)
             {
                 case "Line":
@@ -136,6 +137,15 @@ namespace OopDrawUI
                 case "Circle":
                     _shapes.Add(new Circle(_currentPen, e.X, e.Y));
                     break;
+            }
+            _shapes.Last().Select();
+        }
+
+        private void DeselectAll()
+        {
+            foreach (Shape shape in _shapes)
+            {
+                shape.Deselect();
             }
         }
     }

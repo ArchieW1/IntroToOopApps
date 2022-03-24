@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace OopDrawUI
 {
-    class Circle : Shape
+    public class Circle : Shape
     {
         public Circle(Pen pen, int xCoord1, int yCoord1, int xCoord2, int yCoord2)
             : base(pen, xCoord1, yCoord1, xCoord2, yCoord2)

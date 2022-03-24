@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace OopDrawUI
 {
@@ -10,6 +11,7 @@ namespace OopDrawUI
         public int YCoord1 { get; protected set; }
         public int XCoord2 { get; protected set; }
         public int YCoord2 { get; protected set; }
+        public bool Selected { get; private set; }
 
         public Shape(Pen pen, int xCoord1, int yCoord1, int xCoord2, int yCoord2)
         {
@@ -43,6 +45,18 @@ namespace OopDrawUI
             YCoord1 += yDelta;
             XCoord2 += xDelta;
             YCoord2 += yDelta;
+        }
+
+        public void Select()
+        {
+            Selected = true;
+            Pen.DashStyle = DashStyle.Dash;
+        }
+
+        public void Deselect()
+        {
+            Selected = false;
+            Pen.DashStyle = DashStyle.Solid;
         }
     }
 }
