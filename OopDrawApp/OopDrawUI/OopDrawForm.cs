@@ -11,6 +11,8 @@ namespace OopDrawUI
         private Pen _currentPen = new Pen(Color.Black);
         private bool _dragging;
         private readonly List<Shape> _shapes = new List<Shape>();
+        private Point _startOfDrag;
+        private Point _lastMousePostition;
 
         public OopDrawForm()
         {
@@ -19,6 +21,7 @@ namespace OopDrawUI
             WidthComboBox.SelectedItem = "Medium";
             ColourComboBox.SelectedItem = "Green";
             ShapeComboBox.SelectedItem = "Line";
+            ActionComboBox.SelectedItem = "Draw";
         }
 
         private void CanvasPictureBox_Paint(object sender, PaintEventArgs e)
@@ -33,24 +36,10 @@ namespace OopDrawUI
         private void CanvasPictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             _dragging = true;
-            _shapes.Add(new Line(_currentPen, e.X, e.Y));
-            switch (ShapeComboBox.Text)
+            _startOfDrag = _lastMousePostition = e.Location;
+            if (ActionComboBox.Text == "Draw")
             {
-                case "Line":
-                    _shapes.Add(new Line(_currentPen, e.X, e.Y));
-                    break;
-
-                case "Rectangle":
-                    _shapes.Add(new Rectangle(_currentPen, e.X, e.Y));
-                    break;
-                
-                case "Ellipse":
-                    _shapes.Add(new Ellipse(_currentPen, e.X, e.Y));
-                    break;
-
-                case "Circle":
-                    _shapes.Add(new Circle(_currentPen, e.X, e.Y));
-                    break;
+                AddShape(e);
             }
         }
 
@@ -59,7 +48,20 @@ namespace OopDrawUI
             if (_dragging)
             {
                 Shape shape = _shapes.Last();
-                shape.GrowTo(e.X, e.Y);
+                switch (ActionComboBox.Text)
+                {
+                    case "Move":
+                        if (_lastMousePostition == Point.Empty)
+                        {
+                            _lastMousePostition = e.Location;
+                        }
+                        shape.MoveBy(e.X - _lastMousePostition.X, e.Y - _lastMousePostition.Y);
+                        break;
+                    case "Draw":
+                        shape.GrowTo(e.X, e.Y);
+                        break;
+                }
+                _lastMousePostition = e.Location;
                 Refresh();
             }
         }
@@ -67,6 +69,8 @@ namespace OopDrawUI
         private void CanvasPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             _dragging = false;
+            _lastMousePostition = Point.Empty;
+            Refresh();
         }
 
         private void WidthComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,6 +115,28 @@ namespace OopDrawUI
                     break;
             }
             _currentPen = new Pen(colour, _currentPen.Width);
+        }
+
+        private void AddShape(MouseEventArgs e)
+        {
+            switch (ShapeComboBox.Text)
+            {
+                case "Line":
+                    _shapes.Add(new Line(_currentPen, e.X, e.Y));
+                    break;
+
+                case "Rectangle":
+                    _shapes.Add(new Rectangle(_currentPen, e.X, e.Y));
+                    break;
+
+                case "Ellipse":
+                    _shapes.Add(new Ellipse(_currentPen, e.X, e.Y));
+                    break;
+
+                case "Circle":
+                    _shapes.Add(new Circle(_currentPen, e.X, e.Y));
+                    break;
+            }
         }
     }
 }

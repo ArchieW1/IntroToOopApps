@@ -35,6 +35,8 @@
             this.ColourComboBox = new System.Windows.Forms.ComboBox();
             this.ShapeComboBox = new System.Windows.Forms.ComboBox();
             this.ShapeLabel = new System.Windows.Forms.Label();
+            this.ActionComboBox = new System.Windows.Forms.ComboBox();
+            this.ActionLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CanvasPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,11 +118,33 @@
             this.ShapeLabel.TabIndex = 6;
             this.ShapeLabel.Text = "Shape";
             // 
+            // ActionComboBox
+            // 
+            this.ActionComboBox.FormattingEnabled = true;
+            this.ActionComboBox.Items.AddRange(new object[] {
+            "Draw",
+            "Move"});
+            this.ActionComboBox.Location = new System.Drawing.Point(12, 163);
+            this.ActionComboBox.Name = "ActionComboBox";
+            this.ActionComboBox.Size = new System.Drawing.Size(71, 21);
+            this.ActionComboBox.TabIndex = 7;
+            // 
+            // ActionLabel
+            // 
+            this.ActionLabel.AutoSize = true;
+            this.ActionLabel.Location = new System.Drawing.Point(12, 147);
+            this.ActionLabel.Name = "ActionLabel";
+            this.ActionLabel.Size = new System.Drawing.Size(37, 13);
+            this.ActionLabel.TabIndex = 8;
+            this.ActionLabel.Text = "Action";
+            // 
             // OopDrawForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 656);
+            this.Controls.Add(this.ActionLabel);
+            this.Controls.Add(this.ActionComboBox);
             this.Controls.Add(this.ShapeLabel);
             this.Controls.Add(this.ShapeComboBox);
             this.Controls.Add(this.ColourComboBox);
@@ -132,6 +156,7 @@
             this.Text = "OOPDraw";
             ((System.ComponentModel.ISupportInitialize)(this.CanvasPictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -148,5 +173,7 @@
         private System.Windows.Forms.PictureBox CanvasPictureBox;
 
         #endregion
+        private System.Windows.Forms.ComboBox ActionComboBox;
+        private System.Windows.Forms.Label ActionLabel;
     }
 }

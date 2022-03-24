@@ -36,5 +36,13 @@ namespace OopDrawUI
             XCoord2 = newXCoord2;
             YCoord2 = newYCoord2;
         }
+
+        public void MoveBy(int xDelta, int yDelta)
+        {
+            XCoord1 += xDelta;
+            YCoord1 += yDelta;
+            XCoord2 += xDelta;
+            YCoord2 += yDelta;
+        }
     }
 }
