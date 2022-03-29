@@ -56,17 +56,13 @@ namespace OopDrawUI
         {
             if (_dragging)
             {
-                Shape shape = _shapes.Last();
                 switch (ActionComboBox.Text)
                 {
                     case "Move":
-                        if (_lastMousePosition == Point.Empty)
-                        {
-                            _lastMousePosition = e.Location;
-                        }
-                        shape.MoveBy(e.X - _lastMousePosition.X, e.Y - _lastMousePosition.Y);
+                        MoveSelectedShapes(e);
                         break;
                     case "Draw":
+                        Shape shape = _shapes.Last();
                         shape.GrowTo(e.X, e.Y);
                         break;
                     case "Select":
@@ -168,6 +164,19 @@ namespace OopDrawUI
             foreach (Shape shape in surroundedShapes)
             {
                 shape.Select();
+            }
+        }
+
+        private List<Shape> GetSelectedShapes()
+        {
+            return _shapes.Where(s => s.Selected).ToList();
+        }
+
+        private void MoveSelectedShapes(MouseEventArgs e)
+        {
+            foreach (Shape shape in GetSelectedShapes())
+            {
+                shape.MoveBy(e.X - _lastMousePosition.X, e.Y - _lastMousePosition.Y);
             }
         }
     }

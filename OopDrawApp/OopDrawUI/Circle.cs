@@ -20,7 +20,7 @@ namespace OopDrawUI
             DrawingFunctions.DrawClosedArc(graphics, this);
         }
 
-        public virtual void GrowTo(int xCoord2, int yCoord2)
+        public new virtual void GrowTo(int xCoord2, int yCoord2)
         {
             int diameter = Math.Max(xCoord2 - XCoord1, yCoord2 - YCoord1);
 
