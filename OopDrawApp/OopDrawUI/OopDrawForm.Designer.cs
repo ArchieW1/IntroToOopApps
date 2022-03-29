@@ -37,7 +37,7 @@
             this.ShapeLabel = new System.Windows.Forms.Label();
             this.ActionComboBox = new System.Windows.Forms.ComboBox();
             this.ActionLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.CanvasPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.CanvasPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // CanvasPictureBox
@@ -65,10 +65,7 @@
             // 
             this.WidthComboBox.DisplayMember = "(none)";
             this.WidthComboBox.FormattingEnabled = true;
-            this.WidthComboBox.Items.AddRange(new object[] {
-            "Thin",
-            "Medium",
-            "Thick"});
+            this.WidthComboBox.Items.AddRange(new object[] {"Thin", "Medium", "Thick"});
             this.WidthComboBox.Location = new System.Drawing.Point(12, 32);
             this.WidthComboBox.Name = "WidthComboBox";
             this.WidthComboBox.Size = new System.Drawing.Size(71, 21);
@@ -86,11 +83,7 @@
             // ColourComboBox
             // 
             this.ColourComboBox.FormattingEnabled = true;
-            this.ColourComboBox.Items.AddRange(new object[] {
-            "Black",
-            "Red",
-            "Blue",
-            "Green"});
+            this.ColourComboBox.Items.AddRange(new object[] {"Black", "Red", "Blue", "Green"});
             this.ColourComboBox.Location = new System.Drawing.Point(12, 76);
             this.ColourComboBox.Name = "ColourComboBox";
             this.ColourComboBox.Size = new System.Drawing.Size(71, 21);
@@ -100,11 +93,7 @@
             // ShapeComboBox
             // 
             this.ShapeComboBox.FormattingEnabled = true;
-            this.ShapeComboBox.Items.AddRange(new object[] {
-            "Line",
-            "Rectangle",
-            "Ellipse",
-            "Circle"});
+            this.ShapeComboBox.Items.AddRange(new object[] {"Line", "Rectangle", "Ellipse", "Circle"});
             this.ShapeComboBox.Location = new System.Drawing.Point(12, 123);
             this.ShapeComboBox.Name = "ShapeComboBox";
             this.ShapeComboBox.Size = new System.Drawing.Size(71, 21);
@@ -121,15 +110,12 @@
             // ActionComboBox
             // 
             this.ActionComboBox.FormattingEnabled = true;
-            this.ActionComboBox.Items.AddRange(new object[] {
-            "Draw",
-            "Move",
-            "Select"
-            });
+            this.ActionComboBox.Items.AddRange(new object[] {"Draw", "Move", "Select", "Group"});
             this.ActionComboBox.Location = new System.Drawing.Point(12, 163);
             this.ActionComboBox.Name = "ActionComboBox";
             this.ActionComboBox.Size = new System.Drawing.Size(71, 21);
             this.ActionComboBox.TabIndex = 7;
+            this.ActionComboBox.SelectedIndexChanged += new System.EventHandler(this.ActionComboBox_SelectedIndexChanged);
             // 
             // ActionLabel
             // 
@@ -156,10 +142,9 @@
             this.Controls.Add(this.CanvasPictureBox);
             this.Name = "OopDrawForm";
             this.Text = "OOPDraw";
-            ((System.ComponentModel.ISupportInitialize)(this.CanvasPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.CanvasPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private System.Windows.Forms.Label ShapeLabel;

@@ -179,5 +179,34 @@ namespace OopDrawUI
                 shape.MoveBy(e.X - _lastMousePosition.X, e.Y - _lastMousePosition.Y);
             }
         }
+
+        private void ActionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ActionComboBox.Text)
+            {
+                case "Group":
+                    GroupSelectedShapes();
+                    break;
+            }
+        }
+
+        private void GroupSelectedShapes()
+        {
+            List<Shape> members = GetSelectedShapes();
+            if (members.Count < 2)
+            {
+                return;
+            }
+
+            CompositeShape compositeShape = new CompositeShape(members);
+            compositeShape.Select();
+            _shapes.Add(compositeShape);
+            foreach (Shape member in members)
+            {
+                _shapes.Remove(member);
+                member.Deselect();
+            }
+            Refresh();
+        }
     }
 }
