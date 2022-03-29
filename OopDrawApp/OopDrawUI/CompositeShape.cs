@@ -8,19 +8,19 @@ namespace OopDrawUI
 {
     public class CompositeShape : Shape
     {
-        private List<Shape> _components { get; set; }
+        private List<Shape> Components { get; set; }
 
         public CompositeShape(List<Shape> components) 
             : base(new Pen(Color.Black, 1.0f), 0, 0, 0, 0)
         {
             Pen.DashStyle = DashStyle.Dash;
-            _components = components;
+            Components = components;
             CalculateEnclosingRectangle();
         }
         
         public override void Draw(Graphics graphics)
         {
-            foreach (Shape component in _components)
+            foreach (Shape component in Components)
             {
                 component.Draw(graphics);
             }
@@ -33,23 +33,20 @@ namespace OopDrawUI
 
         public override void MoveBy(int xDelta, int yDelta)
         {
-            foreach (Shape component in _components)
+            foreach (Shape component in Components)
             {
                 component.MoveBy(xDelta, yDelta);
             }
             
-            XCoord1 += xDelta;
-            YCoord1 += yDelta;
-            XCoord2 += xDelta;
-            YCoord2 += yDelta;
+            base.MoveBy(xDelta, yDelta);
         }
         
         private void CalculateEnclosingRectangle()
         {
-            XCoord1 = _components.Min(s => Math.Min(s.XCoord1, s.XCoord2));
-            YCoord1 = _components.Min(s => Math.Min(s.YCoord1, s.YCoord2));
-            XCoord2 = _components.Min(s => Math.Max(s.XCoord1, s.XCoord2));
-            YCoord2 = _components.Min(s => Math.Max(s.XCoord1, s.XCoord2));
+            XCoord1 = Components.Min(s => Math.Min(s.XCoord1, s.XCoord2));
+            YCoord1 = Components.Min(s => Math.Min(s.YCoord1, s.YCoord2));
+            XCoord2 = Components.Max(s => Math.Max(s.XCoord1, s.XCoord2));
+            YCoord2 = Components.Max(s => Math.Max(s.YCoord1, s.YCoord2));
         }
     }
 }
