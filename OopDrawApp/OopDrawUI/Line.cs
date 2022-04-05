@@ -18,5 +18,10 @@ namespace OopDrawUI
         {
             graphics.DrawLine(Pen, XCoord1, YCoord1, XCoord2, YCoord2);
         }
+
+        public Line Clone()
+        {
+            return new Line(Pen, XCoord1, YCoord1, XCoord2, YCoord2);
+        }
     }
 }

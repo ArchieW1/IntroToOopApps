@@ -27,5 +27,10 @@ namespace OopDrawUI
             XCoord2 = XCoord1 + diameter;
             YCoord2 = YCoord1 + diameter;
         }
+        
+        public Circle Clone()
+        {
+            return new Circle(Pen, XCoord1, YCoord1, XCoord2, YCoord2);
+        }
     }
 }
