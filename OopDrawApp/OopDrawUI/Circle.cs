@@ -28,7 +28,7 @@ namespace OopDrawUI
             YCoord2 = YCoord1 + diameter;
         }
         
-        public Circle Clone()
+        public override Shape Clone()
         {
             return new Circle(Pen, XCoord1, YCoord1, XCoord2, YCoord2);
         }

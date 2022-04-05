@@ -18,5 +18,10 @@ namespace OopDrawUI
         {
             DrawingFunctions.DrawClosedArc(graphics, this);
         }
+
+        public override Shape Clone()
+        {
+            return new Ellipse(Pen, XCoord1, YCoord1, XCoord2, YCoord2);
+        }
     }
 }

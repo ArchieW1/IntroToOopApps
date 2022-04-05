@@ -27,6 +27,11 @@ namespace OopDrawUI
             graphics.DrawRectangle(Pen, x, y, width, height);
         }
 
+        public override Shape Clone()
+        {
+            return new Rectangle(Pen, XCoord1, YCoord1, XCoord2, YCoord2);
+        }
+
         public bool FullySurrounds(Shape shape)
         {
             // C# framework tuples make me cry please update school PCs to C# core

@@ -58,5 +58,7 @@ namespace OopDrawUI
             Selected = false;
             Pen.DashStyle = DashStyle.Solid;
         }
+
+        public abstract Shape Clone();
     }
 }

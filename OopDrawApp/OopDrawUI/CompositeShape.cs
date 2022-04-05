@@ -40,7 +40,18 @@ namespace OopDrawUI
             
             base.MoveBy(xDelta, yDelta);
         }
-        
+
+        public override Shape Clone()
+        {
+            List<Shape> newComponents = new List<Shape>();
+            foreach (Shape component in Components)
+            {
+                Shape componentClone = component.Clone(); 
+                newComponents.Add(componentClone);
+            }
+            return new CompositeShape(newComponents);
+        }
+
         private void CalculateEnclosingRectangle()
         {
             XCoord1 = Components.Min(s => Math.Min(s.XCoord1, s.XCoord2));
