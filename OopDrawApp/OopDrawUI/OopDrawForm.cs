@@ -127,6 +127,19 @@ namespace OopDrawUI
             _currentPen = new Pen(colour, _currentPen.Width);
         }
 
+        private void ActionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ActionComboBox.Text)
+            {
+                case "Group":
+                    GroupSelectedShapes();
+                    break;
+                case "Delete":
+                    DeleteSelectedShapes();
+                    break;
+            }
+        }
+        
         private void AddShape(MouseEventArgs e)
         {
             switch (ShapeComboBox.Text)
@@ -180,16 +193,6 @@ namespace OopDrawUI
             }
         }
 
-        private void ActionComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (ActionComboBox.Text)
-            {
-                case "Group":
-                    GroupSelectedShapes();
-                    break;
-            }
-        }
-
         private void GroupSelectedShapes()
         {
             List<Shape> members = GetSelectedShapes();
@@ -205,6 +208,15 @@ namespace OopDrawUI
             {
                 _shapes.Remove(member);
                 member.Deselect();
+            }
+            Refresh();
+        }
+
+        private void DeleteSelectedShapes()
+        {
+            foreach (Shape selectedShape in GetSelectedShapes())
+            {
+                _shapes.Remove(selectedShape);
             }
             Refresh();
         }

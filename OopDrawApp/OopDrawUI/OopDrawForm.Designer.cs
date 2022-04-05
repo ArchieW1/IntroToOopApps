@@ -110,7 +110,7 @@
             // ActionComboBox
             // 
             this.ActionComboBox.FormattingEnabled = true;
-            this.ActionComboBox.Items.AddRange(new object[] {"Draw", "Move", "Select", "Group"});
+            this.ActionComboBox.Items.AddRange(new object[] {"Draw", "Move", "Select", "Group", "Delete"});
             this.ActionComboBox.Location = new System.Drawing.Point(12, 163);
             this.ActionComboBox.Name = "ActionComboBox";
             this.ActionComboBox.Size = new System.Drawing.Size(71, 21);
